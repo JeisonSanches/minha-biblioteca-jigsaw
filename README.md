@@ -6,8 +6,8 @@
 ##### Preparação
 ```
 $ sudo pip3 install virtualenv
-$ git clone xxx
-$ cd xxx
+$ git clone https://github.com/sazuna/minha-biblioteca-jigsaw
+$ cd minha-biblioteca-jigsaw
 $ virtualenv -p python3 venv
 $ . venv/bin/activate
 $ pip install -r requirements.txt
