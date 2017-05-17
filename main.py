@@ -17,7 +17,7 @@ No browser abra o developers console e faça um request para https://jigsaw.vita
 Olhe o último request que termina com um número (".../encrypted/1600" por exemplo). Nos response headers,
 vai ter um parâmetro Set-Cookie. Copie e cole aqui o valor.
 """
-starting_cookie = "_jigsaw_session=d0YvSS9MNG5IWEVMeVJwYTRXeVJkcE5FTmFyejllWEZhVEV1REhpcFlUZzhOdWxNS2NDOVAwZUx4d0dBb2phcmZkeE5NcllsT3VjK1o2UG9ydUdpcHNaajNzekQxL3BZRitJRDIwb2FZeGJ1SXZydElBZS9aRWl4S0NiNWMvQTROOFVPWXBJYzF3aHpIRWp4MWVYSlV2NGJSSHZhNVFaYVovTHh4Si9CNTU1ZmRTbFphTGRoM09ST25ONksxSUN0ZWNSVTZ6dnBpYmc3cStjend4UUN0R2VaYTU3UVBNWnlxdzVBeFZYbGFnY05HWG9ZQ2JTSUlnUDV0emtsVUZibG55SnRETGkvUjJGdEQ3L0Q5b0NsS3VWeGdmNTBHNU5SUXEwQTlnYnVyY0o2VlkyaW5tRkR0clZ6NkcvaEd5K1RodkwyQmZubjFhZUs0MEpQNlZMMHVlNTJJYWVPM1k1L3BIMmxPR3VlQXAwRmJURlhpbjkwQjBKODlmcVVKTFhzdUhnRFVVelpQSWtwRml1UzFDZVB2R1BGQkZZdzlqdjNLaXdBaVJ3cEVnWGQ5MUpjelZ6UVNRdWJzK1RzZWVvVm9UMFk0T1RQbFRoZjFiRFlyS2VhUU1CMitUY0YzRE5jMDcxc2xMMkg1M3d2WVdIYm1DMW1uazlWa0ZVNzJSakU3QjhVTGRPRllweG1ET3U0OWlSMGd3PT0tLW9qd3RtczBBbW1xaUpNamlPc3ZEZGc9PQ%3D%3D--fd5819274615d74d7c560a6528ea1881a55a5935; path=/; HttpOnly"
+starting_cookie = "_jigsaw_session=M3NZNExJbVJWbFB1dU9yQXlUdVhUOS9BMEJ4VHdMRWFsdkgvTGo1OUd0SUlwaWJKZmZMZnp1bjhrRWtmeDJJRFYrY0lkN0c2ek1kNmxNVlJyTEw5bS9vR3N4TUJOcTFvSDh1ZkRBall2aE9jdlNFQ1dxWnk4bGdhQ1o5bkdPSVQ2L1k5L3U0a0IxTkJ2dWo4b3VkUUEreFhuSjQ3Q0hiZUg4YjErN090dnZKaHpJT25jWkJ6R0s5dkpmVXlZekFYYWJvbUd4SGdadGtBbDAyQ0FJblh2ZlpzR0dRczQ3OGJmRzRFZHIwL0J4Q1dQN3R2Q1NaYXVreEFlQVV5eW5tMHhmUXpBR0pTR2xzejBlWDZ6L1VxRG5wN1hqdHVGMnlQTk9PRTNrVEl5YjNIbkpoZkZjTE5jZEx2VkREenZ2Ty95amhxWUR5WThYd1p2L1pGNVoydjNkdzNsOUtvbnlwbWNmUm1Vai81dDNmcWtNV3MxOTdCaDlSQktoTDdCbGxRekszc2Vhd0R0bElIMWptSis0a212MVdXcXQ3Z3VMdjJ1RTNlWXl6N3dLeXdHemdZcy9XbGxyRzRDb21CSmlTOHRab3NMaUNqMGFqcTIzUlRIKys5S1E3bWtLbVc1NTZ6d2wvTElSeGhuMDh4NEhCWWQzendQa0oreWZsYjNCc2gtLWNHaFdxV1JUQ2tRdFN3SHMyeDQwTHc9PQ%3D%3D--08ecaf195343294d31656c58536e9ce665657eec; path=/; HttpOnly"
 
 
 def main(_id=None):
@@ -30,7 +30,7 @@ def main(_id=None):
     #Pasting ISBN here is easier for me, deal with it.
     _id = _id or "9788537803868"
     metadata =  get_metadata(_id)
-    title = metadata['title'] if 'title' in metadata else None
+    title = metadata['title'] if metadata else None
     url = "https://jigsaw.vitalsource.com/api/v0/books/{}/pages".format(_id)
     filename = write_api_response(url)
     download_from_api_response(filename, title)
