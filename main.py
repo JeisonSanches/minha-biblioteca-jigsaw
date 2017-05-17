@@ -17,7 +17,7 @@ No browser abra o developers console e faça um request para https://jigsaw.vita
 Olhe o último request que termina com um número (".../encrypted/1600" por exemplo). Nos response headers,
 vai ter um parâmetro Set-Cookie. Copie e cole aqui o valor.
 """
-starting_cookie = "_jigsaw_session=M3NZNExJbVJWbFB1dU9yQXlUdVhUOS9BMEJ4VHdMRWFsdkgvTGo1OUd0SUlwaWJKZmZMZnp1bjhrRWtmeDJJRFYrY0lkN0c2ek1kNmxNVlJyTEw5bS9vR3N4TUJOcTFvSDh1ZkRBall2aE9jdlNFQ1dxWnk4bGdhQ1o5bkdPSVQ2L1k5L3U0a0IxTkJ2dWo4b3VkUUEreFhuSjQ3Q0hiZUg4YjErN090dnZKaHpJT25jWkJ6R0s5dkpmVXlZekFYYWJvbUd4SGdadGtBbDAyQ0FJblh2ZlpzR0dRczQ3OGJmRzRFZHIwL0J4Q1dQN3R2Q1NaYXVreEFlQVV5eW5tMHhmUXpBR0pTR2xzejBlWDZ6L1VxRG5wN1hqdHVGMnlQTk9PRTNrVEl5YjNIbkpoZkZjTE5jZEx2VkREenZ2Ty95amhxWUR5WThYd1p2L1pGNVoydjNkdzNsOUtvbnlwbWNmUm1Vai81dDNmcWtNV3MxOTdCaDlSQktoTDdCbGxRekszc2Vhd0R0bElIMWptSis0a212MVdXcXQ3Z3VMdjJ1RTNlWXl6N3dLeXdHemdZcy9XbGxyRzRDb21CSmlTOHRab3NMaUNqMGFqcTIzUlRIKys5S1E3bWtLbVc1NTZ6d2wvTElSeGhuMDh4NEhCWWQzendQa0oreWZsYjNCc2gtLWNHaFdxV1JUQ2tRdFN3SHMyeDQwTHc9PQ%3D%3D--08ecaf195343294d31656c58536e9ce665657eec; path=/; HttpOnly"
+starting_cookie = "_jigsaw_session=ODFpa293UWlwK00xVXFJWUgwSTZob2JZZkhTdGJPRGEyMyttK3BXcWoyaitocHc3QXhLUHFpUkJ5dXZXZ3hxYjFFNjhBMUl4WDVFUElpN0hTN3c1SnZEVGxybFlrdEtYbFQwbkV6eDFsUXRQbnFjazl3ZGJwaTJWV2swdnNwcG0rN1J3Q250ZnZ5Si9rMG1UZk80aUxNbWpLN1lmMTVFcTlSbFVMRlcyUmZUaDBmS3FYV3REVWkzdEYvTEpPZSs2MU9neVFSTTZvWTMyV2lwWk4vMGZIa0RxWTk3cmprZGU0Ky9QamtTUzQ1bG1GUmFtV0I5UEppNUMyTHFhc2RYZ2tCT1FKeXIwWTZkRDkyN25YcVVTZ05Xb0o1TVMxTjVZZUFRUkEycG1rSjBPcUdmWEVsaG1Hc0RZVFR2dGovZVBZMnZiSDY3UVA5YmpQd2I2OWZMRDUrSTJLNGZNNVMyVW15RGUwTWN3cjNreGI2VWJuUG1hc3dYQjdneUc3TERYaUF3OWdoOW92MEZMSEtSdnVJVFNCWHN1UWVId0wxL21SWmg0c0ZUTDFKOWdNM0pqaU9YVTZsd3ViRlNESXAvR2JFWmxVbDg4SU12N2UxMTBka2xhQkRGNE5hNlptTzIvalRuOThEYmtQelVSY3l6TWZjQlFuVUptMGNCbmxCaEktLWlsc2FrZnZneUtMVnl5TVgxUnVpbUE9PQ%3D%3D--23c103e480047bdc023a0f306f9ebf841573ecd7; path=/; HttpOnly"
 
 
 def main(_id=None):
@@ -145,11 +145,11 @@ def download_from_api_response(source, book_title):
             page_headers['Cookie'] = image_response.headers['Set-Cookie']
             
             filename = str(page['number']).zfill(3) + "." + path.split(image_response.headers['content-type'])[1]
-            with open(path.split(dirname,filename), 'wb') as out:
+            with open(path.join(dirname,filename), 'wb') as out:
                 copyfileobj(image_response.raw, out)
                 
             pdf.add_page()
-            pdf.image(path.split(dirname,filename),x=0,w=210,h=297)
+            pdf.image(path.join(dirname,filename),x=0,w=210,h=297)
         print("{}/{}".format(index+1,len(pages)))
         
     if is_epub:
