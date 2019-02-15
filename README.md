@@ -6,7 +6,7 @@
 ##### Preparação
 ```
 sudo pip3 install virtualenv
-git clone https://github.com/sazuna/minha-biblioteca-jigsaw
+git clone https://github.com/fnzr/minha-biblioteca-jigsaw
 cd minha-biblioteca-jigsaw
 virtualenv -p python3 venv
 . venv/bin/activate
@@ -23,6 +23,5 @@ pip install -r requirements.txt
 7) No Request URL, o número que segue `books/` é o ISBN do livro. Use no próximo passo.
 8) `python main.py :isbn`
 9) Se o livro estiver em HTML, será criada uma pasta com o timestamp atual no diretório de execução. Abra o livro em `./[timestamp]/Text/[book_title].html`. Se o livro for um conjunto de imagens, será criado o PDF `./[book_title].pdf`
-10) Décimo passo porque 10 é importante.
 
 ![picture](http://i.imgur.com/gERRb9G.jpg)
