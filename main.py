@@ -141,7 +141,7 @@ def download_from_api_response(source, book_title):
             image_headers['Cookie'] = image_response.headers['Set-Cookie']
             page_headers['Cookie'] = image_response.headers['Set-Cookie']
 
-            filename = str(index).zfill(3) + "." + path.split(image_response.headers['content-type'])[1]
+            filename = str(index).zfill(3) + "." + path.split(image_response.headers['content-type'].split(';')[0])[1]
             with open(path.join(dirname,filename), 'wb') as out:
                 copyfileobj(image_response.raw, out)
 
