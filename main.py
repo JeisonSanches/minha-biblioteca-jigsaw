@@ -10,6 +10,7 @@ from urllib.parse import urljoin
 from datetime import datetime
 from fpdf import FPDF
 import json
+import io
 
 """
 Primeiro cookie tem que ser obtido manualmente. Abra MinhaBiblioteca pelo SIGA normalmente.
@@ -120,7 +121,7 @@ def download_from_api_response(source, book_title):
                     if not path.exists(path.dirname(target)):
                         makedirs(path.dirname(target))
                     image_response = session.get(real_src, stream=True)
-                    with open(target, 'wb') as out:
+                    with io.open(target, "wb") as out:
                         copyfileobj(image_response.raw, out)
             epub += str(soup)
         else:
@@ -142,7 +143,7 @@ def download_from_api_response(source, book_title):
             page_headers['Cookie'] = image_response.headers['Set-Cookie']
 
             filename = str(index).zfill(3) + "." + path.split(image_response.headers['content-type'].split(';')[0])[1]
-            with open(path.join(dirname,filename), 'wb') as out:
+            with io.open(path.join(dirname,filename), 'wb', encoding="utf-8") as out:
                 copyfileobj(image_response.raw, out)
 
             pdf.add_page()
@@ -152,7 +153,7 @@ def download_from_api_response(source, book_title):
     if is_epub:
         epub_name = "{}/Text/{}.html".format(dirname,book_title)
         makedirs(path.dirname(epub_name))
-        with open(epub_name,'w+') as f:
+        with io.open(epub_name,'w+', encoding="utf-8") as f:
             f.write(epub)
         print("EPUB file: {}".format(epub_name))
     else:
@@ -166,7 +167,7 @@ def download_from_api_response(source, book_title):
 def write_api_response(url):
     response = requests.get(url, headers=api_headers)
     filename = "out.json"
-    with open(filename,'w+') as f:
+    with io.open(filename,'w+', encoding="utf-8") as f:
         f.write(json.dumps(response.json()))
     print("Got everything I need. Starting download...")
     return filename
